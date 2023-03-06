@@ -74,3 +74,4 @@ document.querySelector('#kundvagn-div').addEventListener('click', ()=>{
     window.location.assign("./html/kundvagn.html")
 })
 
+console.log(sessionStorage.getItem('kiwi'));

@@ -23,3 +23,15 @@
 
 // En knapp för att tömma kundvagnen
 
+console.log(localStorage);
+
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(key, value);
+  }
+
+console.log(Object.keys(localStorage));
+console.log(localStorage.getItem('kiwi'));
+
+console.log(localStorage.getItem('grapefruit'));
