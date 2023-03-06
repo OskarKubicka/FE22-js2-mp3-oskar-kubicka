@@ -1,0 +1,25 @@
+body {
+    display : flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+#kundvagn-div {
+    background-color: blueviolet;
+    height: 100px
+}
+
+.div-prod {
+    background-image: linear-gradient(rgb(178, 178, 178), rgb(229, 229, 229));
+    cursor: pointer;
+    width: 200px;
+    display: flex;
+    flex-flow: column;
+    border-radius: 10px;
+    margin: 20px
+}
+
+.div-prod > *{
+    align-self: center
+}
+
