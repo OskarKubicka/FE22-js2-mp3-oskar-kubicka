@@ -69,11 +69,12 @@ async function getProducts() {
         h1.innerText = namn;
         const prisP = document.createElement('p');
         div.append(prisP);
-        prisP.innerText = pris;
+        prisP.innerText = pris+ ' kr';
 
         const img = document.createElement('img');
         div.append(img);
-        img.src = '';
+        img.src = url;
+        img.style.width = "100px"
         console.log(namn, saldo)
         arrSaldo.push({ namn, saldo })
 
