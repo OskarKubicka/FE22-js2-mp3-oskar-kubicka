@@ -53,6 +53,7 @@ async function fetchDatabase(){
     const response = await fetch(urlFirebase);
     const data = await response.json();
     console.log(data);
+    return data
 }
 
 fetchDatabase();
@@ -147,3 +148,6 @@ fetchDatabase();
 
 
 //////////////////OSKAR /////////////////////////////
+
+const dataFirebasePatch = fetchDatabase();
+
