@@ -87,6 +87,12 @@ getProducts()
 // }
 
 
+
 console.log('detta skriver jag i Martins main branch');
 
 console.log('Här skriver jag Kuk')
+
+
+
+console.log('nu arbetar martin också i main branch');
+
