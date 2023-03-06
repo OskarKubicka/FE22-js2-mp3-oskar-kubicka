@@ -35,19 +35,18 @@ async function getProducts() {
         // button.id = namn
        
     })
-    console.log(document.querySelectorAll('.div-prod')[0].innerText)
-    console.log(document.querySelectorAll('.div-prod')[0].innerText)
+   
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
 
         bananaCount++
         localStorage.setItem('banana', bananaCount);
-        //console.log(localStorage.getItem('banana'))
+        console.log(localStorage.getItem('banana'))
     })
     document.querySelectorAll('.div-prod')[1].addEventListener('click', () => {
 
         pearCount++
         localStorage.setItem('pear', pearCount);
-        //console.log(localStorage.getItem('pear'))
+        console.log(localStorage.getItem('pear'))
     })
     document.querySelectorAll('.div-prod')[2].addEventListener('click', () => {
 
@@ -71,28 +70,7 @@ async function getProducts() {
 
 getProducts()
 
-//console.log(document.querySelectorAll('button'))
-//console.log(document.querySelectorAll('.div-prod'))
-// document.getElementsByClassName('div-prod').addEventListener('click', event => {
-//        // console.log(document.getElementsByClassName('div-prod').childNodes.value)
-// })
-
-
-
-
-
-
-// function createStorage(){
-
-// }
-
-
-
-console.log('detta skriver jag i Martins main branch');
-
-console.log('Här skriver jag Kuk')
-
-
-
-console.log('nu arbetar martin också i main branch');
+document.querySelector('#kundvagn-div').addEventListener('click', ()=>{
+    window.location.assign("./html/kundvagn.html")
+})
 
