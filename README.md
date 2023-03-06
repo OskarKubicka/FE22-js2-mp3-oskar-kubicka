@@ -1,5 +1,2 @@
-
-
 <h1>Fruit Mania<h1>
-
-<p>Vi delade upp arbetet rakt av så att Oskar gjorde allt på produktsidan och Martin gjorde allt på kundvagnssidan.</p>
+<h4>Vi delade upp arbetet rakt av så att Oskar gjorde allt på produktsidan och Martin gjorde allt på kundvagnssidan. Oskar laddade upp repot och Martin arbetade från en klon som committade till main branch.</h4>

@@ -1,4 +1,5 @@
-
+// import _ from '../node_modules/underscore.string/dist/underscore.string.js';
+// const capitalize = require('../node_modules/underscore.string/capitalize');
 
 // KRAV kvar att göra:
 
@@ -56,3 +57,6 @@ async function fetchDatabase(){
 }
 
 fetchDatabase();
+
+
+
