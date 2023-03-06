@@ -7,6 +7,9 @@ const getPear = localStorage.getItem('pear');
 const getKiwi = localStorage.getItem('kiwi')
 const getGrapefruit = localStorage.getItem('grapefruit');
 const getVattenmelon = localStorage.getItem('vattenmelon')
+
+const arrSaldo = []
+console.log(arrSaldo)
 //banana
 let bananaCount = Number(getBanana)
 if (getBanana == null) {
@@ -67,52 +70,76 @@ async function getProducts() {
         const prisP = document.createElement('p');
         div.append(prisP);
         prisP.innerText = pris;
-        // const saldoP = document.createElement('p');
-        // div.append(saldoP);
-        // saldoP.innerText = saldo + ' st';
+
         const img = document.createElement('img');
         div.append(img);
         img.src = '';
-
+        console.log(namn, saldo)
+        arrSaldo.push({ namn, saldo })
 
     })
 
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
+        console.log(arrSaldo[0].saldo)
 
-        bananaCount++
+        if (bananaCount < arrSaldo[0].saldo) {
+            bananaCount++
 
-        localStorage.setItem('banana', bananaCount);
-        console.log(localStorage.getItem('banana'))
-        location.reload();
+            localStorage.setItem('banana', bananaCount);
+            console.log(localStorage.getItem('banana'))
+            location.reload();
+        }
+        else {
+            alert('Slut på lagret')
+        }
     })
     document.querySelectorAll('.div-prod')[1].addEventListener('click', () => {
-
-        pearCount++
-        localStorage.setItem('pear', pearCount);
-        console.log(localStorage.getItem('pear'))
-        location.reload();
+        if (pearCount < arrSaldo[1].saldo) {
+            pearCount++
+            localStorage.setItem('pear', pearCount);
+            console.log(localStorage.getItem('pear'))
+            location.reload();
+        }
+        else {
+            alert('Slut på lagret')
+        }
     })
     document.querySelectorAll('.div-prod')[2].addEventListener('click', () => {
+        console.log(arrSaldo[2].namn, kiwiCount)
 
-        kiwiCount++
-        localStorage.setItem('kiwi', kiwiCount);
-        console.log(localStorage.getItem('kiwi'))
-        location.reload();
+        if (kiwiCount < arrSaldo[2].saldo) {
+            kiwiCount++
+            localStorage.setItem('kiwi', kiwiCount);
+            console.log(localStorage.getItem('kiwi'))
+            location.reload();
+        }
+        else {
+            alert('Slut på lagret')
+        }
     })
     document.querySelectorAll('.div-prod')[3].addEventListener('click', () => {
-
-        grapefruitCount++
-        localStorage.setItem('grapefruit', grapefruitCount);
-        console.log(localStorage.getItem('grapefruit'))
-        location.reload();
+        if (grapefruitCount < arrSaldo[3].saldo) {
+            grapefruitCount++
+            localStorage.setItem('grapefruit', grapefruitCount);
+            console.log(localStorage.getItem('grapefruit'))
+            location.reload();
+        }
+        else {
+            alert('Slut på lagret')
+        }
     })
     document.querySelectorAll('.div-prod')[4].addEventListener('click', () => {
-
-        vattenmelonCount++
-        localStorage.setItem('vattenmelon', vattenmelonCount);
-        console.log(localStorage.getItem('vattenmelon'))
-        location.reload();
+        if (vattenmelonCount < arrSaldo[4].saldo) {
+            vattenmelonCount++
+            localStorage.setItem('vattenmelon', vattenmelonCount);
+            console.log(localStorage.getItem('vattenmelon'))
+            location.reload();
+        }
+        else {
+            alert('Slut på lagret')
+        }
     })
+
 }
 
 getProducts()
