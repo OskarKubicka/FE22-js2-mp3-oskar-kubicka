@@ -59,9 +59,101 @@ async function fetchDatabase(){
         console.log(namn, pris);
         
     });
+    return data
 }
 
 fetchDatabase();
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////OSKAR /////////////////////////////
+
+const dataFirebasePatch = fetchDatabase();
 
