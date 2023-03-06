@@ -21,7 +21,6 @@ else {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const value = localStorage.getItem(key);
-        // console.log(key, value);
 
         const productP = document.createElement('p');
         productP.innerText = key;
@@ -53,6 +52,13 @@ async function fetchDatabase(){
     const response = await fetch(urlFirebase);
     const data = await response.json();
     console.log(data);
+
+    data.forEach(product => {
+
+        const {namn, pris} = product;
+        console.log(namn, pris);
+        
+    });
 }
 
 fetchDatabase();
