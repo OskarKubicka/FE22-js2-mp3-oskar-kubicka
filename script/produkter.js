@@ -86,3 +86,5 @@ getProducts()
 
 // }
 
+
+console.log('detta skriver jag i Martins main branch');
