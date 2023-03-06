@@ -1,0 +1,10 @@
+body {
+    display : flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+#kundvagn-div {
+    background-color: blueviolet;
+    height: 100px
+}
