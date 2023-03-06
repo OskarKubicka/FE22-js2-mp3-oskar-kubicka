@@ -2,7 +2,6 @@
 
 // KRAV kvar att göra:
 
-// *    Visar produkternas totala pris
 // *    En knapp för att genomföra köpet (inte på riktigt)
 
 // ---------------------------------------------------------
@@ -37,41 +36,52 @@ else {
         amountP.innerText = value;
 
         let priceP;
+        let sumP;
 
         if (key == 'banana') {
             priceP = document.createElement('p');
             priceP.innerText = priceBanana;
             sum = priceBanana * value;
+            sumP = document.createElement('p');
+            sumP.innerText = sum;
         }
 
         if (key == 'pear') {
             priceP = document.createElement('p');
             priceP.innerText = pricePear;
             sum = pricePear * value;
+            sumP = document.createElement('p');
+            sumP.innerText = sum;
         }
 
         if (key == 'kiwi') {
             priceP = document.createElement('p');
             priceP.innerText = priceKiwi;
             sum = priceKiwi * value;
+            sumP = document.createElement('p');
+            sumP.innerText = sum;
         }
 
         if (key == 'grapefruit') {
             priceP = document.createElement('p');
             priceP.innerText = priceGrape;
             sum = priceGrape * value;
+            sumP = document.createElement('p');
+            sumP.innerText = sum;
         }
 
         if (key == 'vattenmelon') {
             priceP = document.createElement('p');
             priceP.innerText = priceMelon;
             sum = priceMelon * value;
+            sumP = document.createElement('p');
+            sumP.innerText = sum;
         }
 
         total += sum;
         const productInner = document.createElement('div');
         productInner.classList.add('product-inner');
-        productInner.append(productP, amountP, priceP, sum);
+        productInner.append(productP, amountP, priceP, sumP);
         document.getElementById('cart-parent').append(productInner);
 
         console.log(key)
@@ -96,10 +106,10 @@ async function fetchDatabase() {
     data.forEach(product => {
 
         const { namn, pris } = product;
-        // console.log(namn, pris);
+        console.log(namn, pris);
 
     });
-    return data
+    return data;
 }
 
 fetchDatabase();
