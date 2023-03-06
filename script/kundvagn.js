@@ -7,6 +7,12 @@
 
 // ---------------------------------------------------------
 
+let priceBanana = 10;
+let pricePear = 20;
+let priceKiwi = 20;
+let priceGrape = 20;
+let priceMelon = 40;
+
 // Kollar något finns i localStorage, om nej - visa 'kundvagn tom', om ja - loopa igenom ls och dunka ut 'p'
 if (localStorage.length == 0) {
 
@@ -18,6 +24,9 @@ if (localStorage.length == 0) {
 
 else {
 
+    let sum = 0;
+    let total = 0;
+
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const value = localStorage.getItem(key);
@@ -27,11 +36,46 @@ else {
         const amountP = document.createElement('p');
         amountP.innerText = value;
 
+        let priceP;
+
+        if (key == 'banana') {
+            priceP = document.createElement('p');
+            priceP.innerText = priceBanana;
+            sum = priceBanana * value;
+        }
+
+        if (key == 'pear') {
+            priceP = document.createElement('p');
+            priceP.innerText = pricePear;
+            sum = pricePear * value;
+        }
+
+        if (key == 'kiwi') {
+            priceP = document.createElement('p');
+            priceP.innerText = priceKiwi;
+            sum = priceKiwi * value;
+        }
+
+        if (key == 'grapefruit') {
+            priceP = document.createElement('p');
+            priceP.innerText = priceGrape;
+            sum = priceGrape * value;
+        }
+
+        if (key == 'vattenmelon') {
+            priceP = document.createElement('p');
+            priceP.innerText = priceMelon;
+            sum = priceMelon * value;
+        }
+
+        total += sum;
         const productInner = document.createElement('div');
         productInner.classList.add('product-inner');
-        productInner.append(productP, amountP);
+        productInner.append(productP, amountP, priceP, sum);
         document.getElementById('cart-parent').append(productInner);
     }
+
+    document.querySelector('h3').innerText = `Totalt: ${total}`;
 }
 
 document.getElementById('empty-cart-btn').addEventListener('click', () => {
@@ -39,25 +83,19 @@ document.getElementById('empty-cart-btn').addEventListener('click', () => {
     location.reload();
 })
 
-// console.log(Object.keys(localStorage));
-// console.log(Object.values(localStorage));
-// console.log(localStorage);
-// console.log(localStorage.length);
-
-
 const urlFirebase = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
 
-async function fetchDatabase(){
+async function fetchDatabase() {
 
     const response = await fetch(urlFirebase);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     data.forEach(product => {
 
-        const {namn, pris} = product;
-        console.log(namn, pris);
-        
+        const { namn, pris } = product;
+        // console.log(namn, pris);
+
     });
     return data
 }
