@@ -87,4 +87,4 @@ getProducts()
 // }
 
 
-console.log('detta skriver jag i Martins main branch');
+console.log('nu arbetar martin också i main branch');
