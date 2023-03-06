@@ -1,7 +1,10 @@
 const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
 
 let bananaCount = 0
-
+let pearCount = 0
+let kiwiCount = 0
+let grapefruitCount = 0;
+let vattenmelonCount = 0;
 
 async function getProducts() {
     const response = await fetch(url);
@@ -33,18 +36,36 @@ async function getProducts() {
        
     })
     console.log(document.querySelectorAll('.div-prod')[0].innerText)
+    console.log(document.querySelectorAll('.div-prod')[0].innerText)
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
 
-        let priceStr = document.querySelectorAll('.div-prod')[0].childNodes[1].innerText
-
-        let nameStr = document.querySelectorAll('.div-prod')[0].childNodes[0].innerText
-        console.log(priceStr, nameStr)
-
         bananaCount++
-        console.log(bananaCount)
-        //localStorage.setItem('banana', 1);  
+        localStorage.setItem('banana', bananaCount);
+        //console.log(localStorage.getItem('banana'))
+    })
+    document.querySelectorAll('.div-prod')[1].addEventListener('click', () => {
 
+        pearCount++
+        localStorage.setItem('pear', pearCount);
+        //console.log(localStorage.getItem('pear'))
+    })
+    document.querySelectorAll('.div-prod')[2].addEventListener('click', () => {
 
+        kiwiCount++
+        localStorage.setItem('kiwi', kiwiCount);
+        console.log(localStorage.getItem('kiwi'))
+    })
+    document.querySelectorAll('.div-prod')[3].addEventListener('click', () => {
+
+        grapefruitCount++
+        localStorage.setItem('grapefruit', grapefruitCount);
+        console.log(localStorage.getItem('grapefruit'))
+    })
+    document.querySelectorAll('.div-prod')[4].addEventListener('click', () => {
+
+        vattenmelonCount++
+        localStorage.setItem('vattenmelon', vattenmelonCount);
+        console.log(localStorage.getItem('vattenmelon'))
     })
 }
 
