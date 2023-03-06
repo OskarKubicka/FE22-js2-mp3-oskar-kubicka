@@ -24,14 +24,28 @@
 // En knapp för att tömma kundvagnen
 
 console.log(localStorage);
+console.log(typeof localStorage);
 
 for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const value = localStorage.getItem(key);
     console.log(key, value);
+
+    const productP = document.createElement('p');
+    productP.innerText = key;
+    const amountP = document.createElement('p');
+    amountP.innerText = value;
+
+    const productInner = document.createElement('div');
+    productInner.classList.add('product-inner');
+    productInner.append(productP, amountP);
+    document.getElementById('cart-parent').append(productInner);
   }
 
 console.log(Object.keys(localStorage));
+console.log(Object.values(localStorage));
 console.log(localStorage.getItem('kiwi'));
-
 console.log(localStorage.getItem('grapefruit'));
+
+// localStorage.clear();
+// console.log(localStorage);
