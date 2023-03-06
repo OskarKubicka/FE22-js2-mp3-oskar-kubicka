@@ -73,6 +73,8 @@ else {
         productInner.classList.add('product-inner');
         productInner.append(productP, amountP, priceP, sum);
         document.getElementById('cart-parent').append(productInner);
+
+        console.log(key)
     }
 
     document.querySelector('h3').innerText = `Totalt: ${total}`;
@@ -193,5 +195,29 @@ fetchDatabase();
 
 //////////////////OSKAR /////////////////////////////
 
-const dataFirebasePatch = fetchDatabase();
+async function fetchDatabaseFirebase(){
+
+    const response = await fetch(urlFirebase);
+    const data = await response.json();
+    console.log(data);
+
+    console.log(localStorage)
+
+    data.forEach(product => {
+
+        const {namn, pris} = product;
+        console.log(namn, pris);
+        
+    });
+    return data
+}
+
+fetchDatabaseFirebase();
+
+console.log(localStorage.getItem('banana'))
+console.log(localStorage.getItem('pear'))
+
+console.log(localStorage.getItem('kiwi'))
+console.log(localStorage.getItem('grapefruit'))
+console.log(localStorage.getItem('vattenmelon'))
 

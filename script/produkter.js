@@ -78,6 +78,10 @@ async function getProducts() {
         console.log(namn, saldo)
         arrSaldo.push({ namn, saldo })
 
+        console.log(pris)
+
+
+
     })
 
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
