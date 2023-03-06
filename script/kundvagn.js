@@ -1,51 +1,49 @@
 
-// ------------------------------------- OSKARS FÖRSTA
 
-// console.log(localStorage.getItem('banana'));
+// KRAV kvar att göra:
 
-// let bananaValue = 0;
+// *    Visar produkternas totala pris
+// *    En knapp för att genomföra köpet (inte på riktigt)
+// *    En knapp för att tömma kundvagnen
 
-// bananaValue + Number(localStorage.getItem('banana'))
-// console.log(bananaValue + Number(localStorage.getItem('banana')))
+// ----------------------------------------------------------
 
-// const arr = []
-// arr.push(Number(localStorage.getItem('banana')))
-// console.log(arr)
+// Kollar något finns i localStorage, om nej - visa 'kundvagn tom', om ja - loopa igenom ls och dunka ut 'p'
 
+if (localStorage.length == 0) {
 
-// ------------------------------------- MARTIN START
+    const emptyCart = document.createElement('p');
+    emptyCart.setAttribute('id', 'cart-empty-p');
+    emptyCart.innerText = 'din kundvagn är tom';
+    document.getElementById('cart-parent').append(emptyCart);
+}
 
-// Visar hur många produkter av varje produkt som användaren vill köpa
+else {
 
-// Visar produkternas totala pris
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        // console.log(key, value);
 
-// En knapp för att genomföra köpet (inte på riktigt)
+        const productP = document.createElement('p');
+        productP.innerText = key;
+        const amountP = document.createElement('p');
+        amountP.innerText = value;
 
-// En knapp för att tömma kundvagnen
+        const productInner = document.createElement('div');
+        productInner.classList.add('product-inner');
+        productInner.append(productP, amountP);
+        document.getElementById('cart-parent').append(productInner);
+    }
+}
 
-console.log(localStorage);
-console.log(typeof localStorage);
+document.getElementById('empty-cart-btn').addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+})
 
-for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
-    console.log(key, value);
+// console.log(Object.keys(localStorage));
+// console.log(Object.values(localStorage));
 
-    const productP = document.createElement('p');
-    productP.innerText = key;
-    const amountP = document.createElement('p');
-    amountP.innerText = value;
-
-    const productInner = document.createElement('div');
-    productInner.classList.add('product-inner');
-    productInner.append(productP, amountP);
-    document.getElementById('cart-parent').append(productInner);
-  }
-
-console.log(Object.keys(localStorage));
-console.log(Object.values(localStorage));
-console.log(localStorage.getItem('kiwi'));
-console.log(localStorage.getItem('grapefruit'));
-
-// localStorage.clear();
 // console.log(localStorage);
+// console.log(localStorage.length);
