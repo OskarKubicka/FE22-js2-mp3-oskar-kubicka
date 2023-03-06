@@ -4,12 +4,10 @@
 
 // *    Visar produkternas totala pris
 // *    En knapp för att genomföra köpet (inte på riktigt)
-// *    En knapp för att tömma kundvagnen
 
-// ----------------------------------------------------------
+// ---------------------------------------------------------
 
 // Kollar något finns i localStorage, om nej - visa 'kundvagn tom', om ja - loopa igenom ls och dunka ut 'p'
-
 if (localStorage.length == 0) {
 
     const emptyCart = document.createElement('p');
@@ -44,6 +42,17 @@ document.getElementById('empty-cart-btn').addEventListener('click', () => {
 
 // console.log(Object.keys(localStorage));
 // console.log(Object.values(localStorage));
-
 // console.log(localStorage);
 // console.log(localStorage.length);
+
+
+const urlFirebase = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
+
+async function fetchDatabase(){
+
+    const response = await fetch(urlFirebase);
+    const data = await response.json();
+    console.log(data);
+}
+
+fetchDatabase();
