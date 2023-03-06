@@ -83,11 +83,9 @@ else {
         productInner.classList.add('product-inner');
         productInner.append(productP, amountP, priceP, sumP);
         document.getElementById('cart-parent').append(productInner);
-
-        console.log(key)
     }
 
-    document.querySelector('h3').innerText = `Totalt: ${total}`;
+    document.querySelector('h3').innerText = `Totalt: ${total}:-`;
 }
 
 document.getElementById('empty-cart-btn').addEventListener('click', () => {
@@ -202,10 +200,9 @@ fetchDatabase();
 
 
 
-
 //////////////////OSKAR /////////////////////////////
 
-async function fetchDatabaseFirebase(){
+async function fetchDatabaseFirebase() {
 
     const response = await fetch(urlFirebase);
     const data = await response.json();
@@ -215,9 +212,9 @@ async function fetchDatabaseFirebase(){
 
     data.forEach(product => {
 
-        const {namn, pris} = product;
+        const { namn, pris } = product;
         console.log(namn, pris);
-        
+
     });
     return data
 }
