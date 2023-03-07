@@ -2,44 +2,44 @@ const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebase
 
 const kundvagnAntalP = document.querySelector('#kundvagn-antal');
 
-const getBanana = localStorage.getItem('banana');
-const getPear = localStorage.getItem('pear');
-const getKiwi = localStorage.getItem('kiwi')
-const getGrapefruit = localStorage.getItem('grapefruit');
-const getVattenmelon = localStorage.getItem('vattenmelon')
+const localBanana = localStorage.getItem('banana');
+const localPear = localStorage.getItem('pear');
+const localKiwi = localStorage.getItem('kiwi')
+const localGrapefruit = localStorage.getItem('grapefruit');
+const localVattenmelon = localStorage.getItem('vattenmelon')
 
 const arrSaldo = []
 console.log(arrSaldo)
 //banana
-let bananaCount = Number(getBanana)
-if (getBanana == null) {
+let bananaCount = Number(localBanana)
+if (localBanana == null) {
     bananaCount = 0
 
 }
 
 //pear
-let pearCount = Number(getPear)
-if (getPear == null) {
+let pearCount = Number(localPear)
+if (localPear == null) {
     pearCount = 0
 }
 console.log(pearCount)
 
 //kiwi
-let kiwiCount = Number(getKiwi)
-if (getKiwi == null) {
+let kiwiCount = Number(localKiwi)
+if (localKiwi == null) {
     kiwiCount = 0
 }
 console.log(kiwiCount)
 
 //grapefruit
-let grapefruitCount = Number(getGrapefruit)
-if (getGrapefruit == null) {
+let grapefruitCount = Number(localGrapefruit)
+if (localGrapefruit == null) {
     grapefruitCount = 0
 }
 console.log(grapefruitCount)
 //Watermelon
-let vattenmelonCount = Number(getVattenmelon)
-if (getVattenmelon == null) {
+let vattenmelonCount = Number(localVattenmelon)
+if (localVattenmelon == null) {
     vattenmelonCount = 0
 }
 console.log(vattenmelonCount)
@@ -78,7 +78,7 @@ async function getProducts() {
         console.log(namn, saldo)
         arrSaldo.push({ namn, saldo })
 
-        console.log(pris)
+        console.log(namn)
 
 
 
