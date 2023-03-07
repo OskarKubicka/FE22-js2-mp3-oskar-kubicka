@@ -126,6 +126,100 @@ document.getElementById('empty-cart-btn').addEventListener('click', () => {
 
 
 
+document.getElementById('buy-btn').addEventListener('click', () => {
+
+    if (localStorage.length !== 0) {
+        fetchDatabase()
+            .then(updateStock)
+    }
+})
+
+function updateStock(products) {
+
+    let newBalance = 0;
+
+    products.forEach(product => {
+
+        let { namn, saldo } = product;
+
+        for (let i = 0; i < localStorage.length; i++) {
+            let cartProduct = localStorage.key(i);
+            let cartAmount = localStorage.getItem(cartProduct);
+
+            if (namn == cartProduct) {
+                newBalance = (saldo - cartAmount)
+                console.log(namn, newBalance);
+            }
+
+        }
+    })
+}
+
+
+
+// ------------------------------------------- SAFE COPY
+// document.getElementById('buy-btn').addEventListener('click', () => {
+
+//     if (localStorage.length !== 0){
+
+//         fetchDatabase()
+//         .then(balancePerProduct);
+//         updateStock();
+//     }
+
+// })
+
+// // Task: Saldo från database - cartAmount = newBalance
+// // newBalance patchas till rätt index
+
+
+
+// function balancePerProduct(databaseProducts){
+
+//     console.log(localStorage);
+//     databaseProducts.forEach(product => {
+
+//         const {namn, saldo} = product;
+//         console.log(namn, saldo);
+
+//         return namn, saldo;
+//     })
+
+// }
+
+
+// async function updateStock() {
+
+//     console.log(localStorage);
+
+//     for (let i = 0; i < localStorage.length; i++) {
+//         let cartProduct = localStorage.key(i);
+//         let cartAmount = localStorage.getItem(cartProduct);
+//         console.log(cartProduct, cartAmount);
+
+//         // if(cartProduct == 'banana'){
+//         //     // console.log('banan');
+//         // }
+
+//     }
+
+
+
+// const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products${index}.json`;
+// const init = {
+//     method: 'PATCH',
+//     body: JSON.stringify({ saldo: }),
+//     headers: {
+//         'Content-type': 'application/json; charset=UTF-8'
+//     }
+// }
+
+// const response = await fetch(url, init);
+// const data = await response.json();
+// console.log(data);
+// }
+
+
 
 
 
