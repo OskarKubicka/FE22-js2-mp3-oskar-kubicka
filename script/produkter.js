@@ -1,6 +1,11 @@
+import anime from "../node_modules/animejs/lib/anime.es.js";
+
+
+
 const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
 
 const kundvagnAntalP = document.querySelector('#kundvagn-antal');
+
 
 const localBanana = localStorage.getItem('banana');
 const localPear = localStorage.getItem('pear');
@@ -62,14 +67,18 @@ async function getProducts() {
         const { namn, pris, saldo, url } = products
         console.log(namn, pris, saldo, url)
         const div = document.createElement('div');
-        document.body.append(div);
+        document.querySelector('#show-products').append(div);
         div.className = 'div-prod'
         const h1 = document.createElement('h1');
         div.append(h1);
         h1.innerText = namn;
         const prisP = document.createElement('p');
         div.append(prisP);
-        prisP.innerText = pris+ ' kr';
+        prisP.innerText = pris + ' kr';
+        const pAnime = document.createElement('h1');
+        div.append(pAnime);
+        pAnime.innerText = "Välj";
+        pAnime.className = "choice";
 
         const img = document.createElement('img');
         div.append(img);
@@ -83,6 +92,27 @@ async function getProducts() {
 
 
     })
+    document.querySelector('#kundvagn-div').addEventListener("mouseover", (event) => {
+        anime({
+            targets: '#bild',
+            width: '100px',
+            
+
+        })
+
+
+    })
+    document.querySelector('#kundvagn-div').addEventListener("mouseleave", (event) => {
+        anime({
+            targets: '#bild',
+            width: '70px',
+
+        })
+
+
+    })
+
+
 
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
         console.log(arrSaldo[0].saldo)
@@ -152,4 +182,7 @@ getProducts()
 document.querySelector('#kundvagn-div').addEventListener('click', () => {
     window.location.assign("./html/kundvagn.html")
 })
+
+
+
 
