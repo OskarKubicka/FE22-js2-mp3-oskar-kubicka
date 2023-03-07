@@ -6,10 +6,21 @@
 }
 
 #kundvagn-div {
-    background-color: rgba(210, 161, 255, 0.3);
-    height: 130px;
+    cursor: pointer;
     position: absolute;
     left: 10px;
+    text-align: center;
+    font-size: larger;
+}
+
+#kundvagn-div > *{
+    margin: 0;
+    
+}
+
+#bild {
+    width: 70px;
+    
 }
 
 #go {

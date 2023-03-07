@@ -6,6 +6,7 @@ const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebase
 
 const kundvagnAntalP = document.querySelector('#kundvagn-antal');
 
+
 const localBanana = localStorage.getItem('banana');
 const localPear = localStorage.getItem('pear');
 const localKiwi = localStorage.getItem('kiwi')
@@ -93,9 +94,9 @@ async function getProducts() {
     })
     document.querySelector('#kundvagn-div').addEventListener("mouseover", (event) => {
         anime({
-            targets: '#go',
-            fontSize: '25px',
-            color: '#0FA41D',
+            targets: '#bild',
+            width: '100px',
+            
 
         })
 
@@ -103,9 +104,8 @@ async function getProducts() {
     })
     document.querySelector('#kundvagn-div').addEventListener("mouseleave", (event) => {
         anime({
-            targets: '#go',
-            fontSize: '15px',
-            color: '#000000',
+            targets: '#bild',
+            width: '70px',
 
         })
 
