@@ -6,153 +6,123 @@
 
 // ---------------------------------------------------------
 
-let priceBanana = 10;
-let pricePear = 20;
-let priceKiwi = 20;
-let priceGrape = 20;
-let priceMelon = 40;
+let priceBanana;
+let pricePear;
+let priceKiwi;
+let priceGrape;
+let priceMelon;
 
-// Kollar något finns i localStorage, om nej - visa 'kundvagn tom', om ja - loopa igenom ls och dunka ut 'p'
-if (localStorage.length == 0) {
+fetchDatabase()
+    .then(pricePerProduct)
+    .then(cartProducts)
 
-    const emptyCart = document.createElement('p');
-    emptyCart.setAttribute('id', 'cart-empty-p');
-    emptyCart.innerText = 'din kundvagn är tom';
-    document.getElementById('cart-parent').append(emptyCart);
+async function fetchDatabase() {
+    const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
 }
 
-else {
+function pricePerProduct(products) {
+    products.forEach(product => {
+        const { namn, pris } = product;
 
-    let sum = 0;
-    let total = 0;
+        if (namn == 'banana')
+            priceBanana = pris;
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        const value = localStorage.getItem(key);
+        if (namn == 'pear')
+            pricePear = pris;
 
-        const productP = document.createElement('p');
-        productP.innerText = key;
-        const amountP = document.createElement('p');
-        amountP.innerText = value;
+        if (namn == 'kiwi')
+            priceKiwi = pris;
 
-        let priceP;
-        let sumP;
+        if (namn == 'grapefruit')
+            priceGrape = pris;
 
-        if (key == 'banana') {
-            priceP = document.createElement('p');
-            priceP.innerText = priceBanana;
-            sum = priceBanana * value;
-            sumP = document.createElement('p');
-            sumP.innerText = sum;
-        }
+        if (namn == 'vattenmelon')
+            priceMelon = pris;
+    })
+}
 
-        if (key == 'pear') {
-            priceP = document.createElement('p');
-            priceP.innerText = pricePear;
-            sum = pricePear * value;
-            sumP = document.createElement('p');
-            sumP.innerText = sum;
-        }
+function cartProducts() {
 
-        if (key == 'kiwi') {
-            priceP = document.createElement('p');
-            priceP.innerText = priceKiwi;
-            sum = priceKiwi * value;
-            sumP = document.createElement('p');
-            sumP.innerText = sum;
-        }
-
-        if (key == 'grapefruit') {
-            priceP = document.createElement('p');
-            priceP.innerText = priceGrape;
-            sum = priceGrape * value;
-            sumP = document.createElement('p');
-            sumP.innerText = sum;
-        }
-
-        if (key == 'vattenmelon') {
-            priceP = document.createElement('p');
-            priceP.innerText = priceMelon;
-            sum = priceMelon * value;
-            sumP = document.createElement('p');
-            sumP.innerText = sum;
-        }
-
-        total += sum;
-        const productInner = document.createElement('div');
-        productInner.classList.add('product-inner');
-        productInner.append(productP, amountP, priceP, sumP);
-        document.getElementById('cart-parent').append(productInner);
+    if (localStorage.length == 0) {
+        const emptyCart = document.createElement('p');
+        emptyCart.setAttribute('id', 'cart-empty-p');
+        emptyCart.innerText = 'din kundvagn är tom';
+        document.getElementById('cart-parent').append(emptyCart);
     }
 
-    document.querySelector('h3').innerText = `Totalt: ${total}:-`;
+    else {
+        let sum = 0;
+        let total = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+
+            const productP = document.createElement('p');
+            productP.innerText = key;
+            const amountP = document.createElement('p');
+            amountP.innerText = value;
+
+            let priceP;
+            let sumP;
+
+            if (key == 'banana') {
+                priceP = document.createElement('p');
+                priceP.innerText = priceBanana;
+                sum = priceBanana * value;
+                sumP = document.createElement('p');
+                sumP.innerText = sum;
+            }
+
+            else if (key == 'pear') {
+                priceP = document.createElement('p');
+                priceP.innerText = pricePear;
+                sum = pricePear * value;
+                sumP = document.createElement('p');
+                sumP.innerText = sum;
+            }
+
+            else if (key == 'kiwi') {
+                priceP = document.createElement('p');
+                priceP.innerText = priceKiwi;
+                sum = priceKiwi * value;
+                sumP = document.createElement('p');
+                sumP.innerText = sum;
+            }
+
+            else if (key == 'grapefruit') {
+                priceP = document.createElement('p');
+                priceP.innerText = priceGrape;
+                sum = priceGrape * value;
+                sumP = document.createElement('p');
+                sumP.innerText = sum;
+            }
+
+            else if (key == 'vattenmelon') {
+                priceP = document.createElement('p');
+                priceP.innerText = priceMelon;
+                sum = priceMelon * value;
+                sumP = document.createElement('p');
+                sumP.innerText = sum;
+            }
+
+            total += sum;
+            const productInner = document.createElement('div');
+            productInner.classList.add('product-inner');
+            productInner.append(productP, amountP, priceP, sumP);
+            document.getElementById('cart-parent').append(productInner);
+        }
+
+        document.querySelector('h3').innerText = `Totalt: ${total}:-`;
+    }
 }
 
 document.getElementById('empty-cart-btn').addEventListener('click', () => {
     localStorage.clear();
     location.reload();
 })
-
-const urlFirebase = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
-
-async function fetchDatabase() {
-
-    const response = await fetch(urlFirebase);
-    const data = await response.json();
-    // console.log(data);
-
-    data.forEach(product => {
-
-        const { namn, pris } = product;
-        console.log(namn, pris);
-
-    });
-    return data;
-}
-
-fetchDatabase();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -208,23 +178,23 @@ async function fetchDatabaseFirebase() {
     const data = await response.json();
     console.log(data);
 
-    console.log(localStorage)
+    // console.log(localStorage)
 
     data.forEach(product => {
 
         const { namn, pris } = product;
-        console.log(namn, pris);
+        // console.log(namn, pris);
 
     });
     return data
 }
 
-fetchDatabaseFirebase();
+// fetchDatabaseFirebase();
 
-console.log(localStorage.getItem('banana'))
-console.log(localStorage.getItem('pear'))
+// console.log(localStorage.getItem('banana'))
+// console.log(localStorage.getItem('pear'))
 
-console.log(localStorage.getItem('kiwi'))
-console.log(localStorage.getItem('grapefruit'))
-console.log(localStorage.getItem('vattenmelon'))
+// console.log(localStorage.getItem('kiwi'))
+// console.log(localStorage.getItem('grapefruit'))
+// console.log(localStorage.getItem('vattenmelon'))
 
