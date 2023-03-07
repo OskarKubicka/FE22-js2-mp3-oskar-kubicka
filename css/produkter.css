@@ -1,12 +1,19 @@
-body {
+#show-products {
+    margin-left: 60px;
     display : flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
 
 #kundvagn-div {
-    background-color: blueviolet;
-    height: 100px
+    background-color: rgba(210, 161, 255, 0.3);
+    height: 130px;
+    position: absolute;
+    left: 10px;
+}
+
+#go {
+    cursor: pointer;
 }
 
 .div-prod {
@@ -16,7 +23,8 @@ body {
     display: flex;
     flex-flow: column;
     border-radius: 10px;
-    margin: 20px
+    margin: 20px;
+    padding-bottom: 15px;
 }
 
 .div-prod > *{
