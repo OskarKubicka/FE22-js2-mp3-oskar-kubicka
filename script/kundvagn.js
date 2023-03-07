@@ -24,7 +24,7 @@ let priceMelon;
 
 fetchDatabase()
     .then(pricePerProduct)
-    .then(displayCartProducts)
+    .then(cartProducts)
 
 async function fetchDatabase() {
     const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
@@ -54,7 +54,7 @@ function pricePerProduct(products) {
     })
 }
 
-function displayCartProducts() {
+function cartProducts() {
 
     if (localStorage.length == 0) {
         const emptyCart = document.createElement('p');
@@ -64,14 +64,11 @@ function displayCartProducts() {
     }
 
     else {
-        let key;
-        let value;
         let sum = 0;
         let total = 0;
-
         for (let i = 0; i < localStorage.length; i++) {
-            key = localStorage.key(i);
-            value = localStorage.getItem(key);
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
 
             const productP = document.createElement('p');
             productP.innerText = key;
@@ -128,7 +125,7 @@ function displayCartProducts() {
             document.getElementById('cart-parent').append(productInner);
         }
 
-        document.querySelector('h3').innerText = `Totalt: ${total} kr`;
+        document.querySelector('h3').innerText = `Totalt: ${total}:-`;
     }
 }
 
@@ -243,11 +240,25 @@ function updateStock(products) {
 
 
 
-const urlBanana = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.loe.org%2Fcontent%2F2014-04-18%2F10-bananabunch.gif&f=1&nofb=1&ipt=356eab010f570eeaa9b9bceaabe4f807c104d016ff866f8686e5beb0c3fad27e&ipo=images';
-const urlPear = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-I-ifw1Q4JvI%2FXVP8tZi_K1I%2FAAAAAAAAA0I%2Frq0s8CrJQKss1TLnBIcTLVmfhcI-9njggCLcBGAs%2Fs1600%2Fpears.jpg&f=1&nofb=1&ipt=2ef8e3f0f1a741222eed7b2fef04662b7bc1621cdc4cbbd49804b20372f65c3e&ipo=images';
-const urlKiwi = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.femalefirst.co.uk%2Fimage-library%2Fsquare%2F1000%2Fk%2Fkiwi-103965998.jpg&f=1&nofb=1&ipt=549d133536180e32fcb217e2ec6404c47058fc0805405acf59c792197099aa60&ipo=images';
-const urlGrape = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.britannica.com%2F22%2F122522-050-6CD1C3E7%2FGrapefruit.jpg&f=1&nofb=1&ipt=f799502084c77f3998f3aec93cfdd181b1bc922c118a09f9539a95fb73011f36&ipo=images';
-const urlMelon = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstatic.dailyforest.com%2Fwp-content%2Fuploads%2F2016%2F02%2F25190143%2FWatermelon.jpg&f=1&nofb=1&ipt=1c00f8c34e8392ebca57d3c6820a4216ed34b71b55522085b5dd6971d3e1cf94&ipo=images';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -265,20 +276,24 @@ const urlMelon = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fsta
 //////////////////OSKAR /////////////////////////////
 
 async function fetchDatabaseFirebase() {
-
+    const urlFirebase = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
     const response = await fetch(urlFirebase);
     const data = await response.json();
     console.log(data);
 
+     console.log(data)
+
+
+
     // console.log(localStorage)
 
-    data.forEach(product => {
+    // data.forEach(product => {
 
-        const { namn, pris } = product;
-        // console.log(namn, pris);
+    //     const { namn, saldo } = product;
+    //    console.log(namn, saldo);
 
-    });
-    return data
+    // });
+    // return data
 }
 
 // fetchDatabaseFirebase();
