@@ -115,7 +115,7 @@ function cartProducts() {
             document.getElementById('cart-parent').append(productInner);
         }
 
-        document.querySelector('h3').innerText = `Totalt: ${total}:-`;
+        document.querySelector('h3').innerText = `Totalt: ${total} kr`;
     }
 }
 
