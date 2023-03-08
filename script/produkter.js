@@ -83,7 +83,8 @@ async function getProducts() {
         const img = document.createElement('img');
         div.append(img);
         img.src = url;
-        img.style.width = "100px"
+        img.style.width = "100px";
+        img.style.borderRadius = "4px"
         console.log(namn, saldo)
         arrSaldo.push({ namn, saldo })
 
