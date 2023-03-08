@@ -30,12 +30,15 @@ async function fetchDatabase() {
     const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     return data;
 }
 
 function pricePerProduct(products) {
+    console.log('denna funktionen fungerar?');
     products.forEach(product => {
-        const { namn, pris } = product;
+        const { namn, pris, saldo } = product;
+        console.log(namn, saldo);
 
         if (namn == 'banana')
             priceBanana = pris;
@@ -129,26 +132,20 @@ function cartProducts() {
     }
 }
 
-document.getElementById('empty-cart-btn').addEventListener('click', () => {
-    localStorage.clear();
-    location.reload();
-})
-
-
-
 document.getElementById('buy-btn').addEventListener('click', () => {
 
     if (localStorage.length !== 0) {
         fetchDatabase()
-            .then(updateStock)
+            .then(updatedStock)
+            .then(changeInStock);
     }
 })
 
-function updateStock(products) {
+function updatedStock(products) {
 
     let newBalance = 0;
 
-    products.forEach(product => {
+    products.forEach((product, index) => {
 
         let { namn, saldo } = product;
 
@@ -159,149 +156,31 @@ function updateStock(products) {
             if (namn == cartProduct) {
                 newBalance = (saldo - cartAmount)
                 console.log(`Du har handlat ${cartAmount} st ${cartProduct}/${namn}. I vårt lager finns nu ${saldo} - ${cartAmount} = ${newBalance}`);
+                changeInStock(index, newBalance);
             }
+
         }
     })
 }
 
-
-
-// ------------------------------------------- SAFE COPY
-// document.getElementById('buy-btn').addEventListener('click', () => {
-
-//     if (localStorage.length !== 0){
-
-//         fetchDatabase()
-//         .then(balancePerProduct);
-//         updateStock();
-//     }
-
-// })
-
-// // Task: Saldo från database - cartAmount = newBalance
-// // newBalance patchas till rätt index
-
-
-
-// function balancePerProduct(databaseProducts){
-
-//     console.log(localStorage);
-//     databaseProducts.forEach(product => {
-
-//         const {namn, saldo} = product;
-//         console.log(namn, saldo);
-
-//         return namn, saldo;
-//     })
-
-// }
-
-
-// async function updateStock() {
-
-//     console.log(localStorage);
-
-//     for (let i = 0; i < localStorage.length; i++) {
-//         let cartProduct = localStorage.key(i);
-//         let cartAmount = localStorage.getItem(cartProduct);
-//         console.log(cartProduct, cartAmount);
-
-//         // if(cartProduct == 'banana'){
-//         //     // console.log('banan');
-//         // }
-
-//     }
-
-
-
-// const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products${index}.json`;
-// const init = {
-//     method: 'PATCH',
-//     body: JSON.stringify({ saldo: }),
-//     headers: {
-//         'Content-type': 'application/json; charset=UTF-8'
-//     }
-// }
-
-// const response = await fetch(url, init);
-// const data = await response.json();
-// console.log(data);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////OSKAR /////////////////////////////
-
-async function fetchDatabaseFirebase() {
-    const urlFirebase = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
-    const response = await fetch(urlFirebase);
+async function changeInStock(index, newBalance) {
+
+    const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products/${index}.json`;
+    const init = {
+        method: 'PATCH',
+        body: JSON.stringify({ saldo: newBalance }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    }
+
+    const response = await fetch(url, init);
     const data = await response.json();
     console.log(data);
-
-     console.log(data)
-
-
-
-    // console.log(localStorage)
-
-    // data.forEach(product => {
-
-    //     const { namn, saldo } = product;
-    //    console.log(namn, saldo);
-
-    // });
-    // return data
 }
 
-// fetchDatabaseFirebase();
-
-// console.log(localStorage.getItem('banana'))
-// console.log(localStorage.getItem('pear'))
-
-// console.log(localStorage.getItem('kiwi'))
-// console.log(localStorage.getItem('grapefruit'))
-// console.log(localStorage.getItem('vattenmelon'))
+document.getElementById('empty-cart-btn').addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+})
 
