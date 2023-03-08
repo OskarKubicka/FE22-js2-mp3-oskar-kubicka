@@ -1,21 +1,5 @@
 
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getDatabase, push, ref, onValue, set, update, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBsyIRjFOQzlMQi4xlBdP92MK9HoxY9HZU",
-    authDomain: "produktsida-oskar-martin.firebaseapp.com",
-    databaseURL: "https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "produktsida-oskar-martin",
-    storageBucket: "produktsida-oskar-martin.appspot.com",
-    messagingSenderId: "854646685101",
-    appId: "1:854646685101:web:d53a06ee5ea68548eb7524"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
 let priceBanana;
 let pricePear;
 let priceKiwi;
