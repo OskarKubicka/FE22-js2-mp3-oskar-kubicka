@@ -14,15 +14,12 @@ async function fetchDatabase() {
     const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
 function pricePerProduct(products) {
-    console.log('denna funktionen fungerar?');
     products.forEach(product => {
-        const { namn, pris, saldo } = product;
-        console.log(namn, saldo);
+        const { namn, pris } = product;
 
         if (namn == 'banana')
             priceBanana = pris;
@@ -121,7 +118,6 @@ document.getElementById('buy-btn').addEventListener('click', () => {
     if (localStorage.length !== 0) {
         fetchDatabase()
             .then(updatedStock)
-            .then(changeInStock);
     }
 })
 
@@ -142,7 +138,6 @@ function updatedStock(products) {
                 console.log(`Du har handlat ${cartAmount} st ${cartProduct}/${namn}. I vårt lager finns nu ${saldo} - ${cartAmount} = ${newBalance}`);
                 changeInStock(index, newBalance);
             }
-
         }
     })
 }
@@ -158,9 +153,13 @@ async function changeInStock(index, newBalance) {
         }
     }
 
-    const response = await fetch(url, init);
-    const data = await response.json();
-    console.log(data);
+
+    await fetch(url, init);
+
+    setTimeout(() => {
+        localStorage.clear();
+        location.reload();
+    }, 1000)
 }
 
 document.getElementById('empty-cart-btn').addEventListener('click', () => {
