@@ -1,11 +1,10 @@
 import anime from "../node_modules/animejs/lib/anime.es.js";
-
+import _ from "../node_modules/underscore/underscore-esm.js";
 
 
 const url = `https://produktsida-oskar-martin-default-rtdb.europe-west1.firebasedatabase.app/products.json`;
 
 const kundvagnAntalP = document.querySelector('#kundvagn-antal');
-
 
 const localBanana = localStorage.getItem('banana');
 const localPear = localStorage.getItem('pear');
@@ -14,49 +13,37 @@ const localGrapefruit = localStorage.getItem('grapefruit');
 const localVattenmelon = localStorage.getItem('vattenmelon')
 
 const arrSaldo = []
-console.log(arrSaldo)
-//banana
+
 let bananaCount = Number(localBanana)
-if (localBanana == null) {
+if (_.isNull(localBanana)) {
     bananaCount = 0
 
 }
 
-//pear
 let pearCount = Number(localPear)
-if (localPear == null) {
+if (_.isNull(localPear)) {
     pearCount = 0
 }
-console.log(pearCount)
 
-//kiwi
 let kiwiCount = Number(localKiwi)
-if (localKiwi == null) {
+if (_.isNull(localKiwi)) {
     kiwiCount = 0
 }
-console.log(kiwiCount)
 
-//grapefruit
 let grapefruitCount = Number(localGrapefruit)
-if (localGrapefruit == null) {
+if (_.isNull(localGrapefruit)) {
     grapefruitCount = 0
 }
-console.log(grapefruitCount)
-//Watermelon
+
+
 let vattenmelonCount = Number(localVattenmelon)
-if (localVattenmelon == null) {
+if (_.isNull(localVattenmelon)) {
     vattenmelonCount = 0
 }
-console.log(vattenmelonCount)
 
+let totalKund = bananaCount + pearCount + kiwiCount + grapefruitCount + vattenmelonCount;
 
-
-let totalKund = bananaCount + pearCount + kiwiCount + grapefruitCount + vattenmelonCount
-console.log(totalKund)
 kundvagnAntalP.innerText = totalKund;
-
-
-
 
 async function getProducts() {
     const response = await fetch(url);
@@ -65,7 +52,6 @@ async function getProducts() {
     data.forEach(products => {
 
         const { namn, pris, saldo, url } = products
-        console.log(namn, pris, saldo, url)
         const div = document.createElement('div');
         document.querySelector('#show-products').append(div);
         div.className = 'div-prod'
@@ -84,21 +70,17 @@ async function getProducts() {
         div.append(img);
         img.src = url;
         img.style.width = "100px";
-        img.style.borderRadius = "4px"
-        console.log(namn, saldo)
+        img.style.borderRadius = "4px";
+        img.style.border = "solid red 1px"
         arrSaldo.push({ namn, saldo })
 
-        console.log(namn)
-
-
-
     })
+
+    //kundvagn
     document.querySelector('#kundvagn-div').addEventListener("mouseover", (event) => {
         anime({
             targets: '#bild',
             width: '100px',
-            
-
         })
 
 
@@ -107,14 +89,12 @@ async function getProducts() {
         anime({
             targets: '#bild',
             width: '70px',
-
         })
 
 
     })
 
-
-
+    //div för produkter
     document.querySelectorAll('.div-prod')[0].addEventListener('click', () => {
         console.log(arrSaldo[0].saldo)
 
@@ -122,31 +102,32 @@ async function getProducts() {
             bananaCount++
 
             localStorage.setItem('banana', bananaCount);
-            console.log(localStorage.getItem('banana'))
+
             location.reload();
         }
         else {
             alert('Slut på lagret')
         }
     })
+
     document.querySelectorAll('.div-prod')[1].addEventListener('click', () => {
         if (pearCount < arrSaldo[1].saldo) {
             pearCount++
             localStorage.setItem('pear', pearCount);
-            console.log(localStorage.getItem('pear'))
             location.reload();
         }
         else {
             alert('Slut på lagret')
         }
     })
+
     document.querySelectorAll('.div-prod')[2].addEventListener('click', () => {
         console.log(arrSaldo[2].namn, kiwiCount)
 
         if (kiwiCount < arrSaldo[2].saldo) {
             kiwiCount++
             localStorage.setItem('kiwi', kiwiCount);
-            console.log(localStorage.getItem('kiwi'))
+
             location.reload();
         }
         else {
@@ -157,7 +138,7 @@ async function getProducts() {
         if (grapefruitCount < arrSaldo[3].saldo) {
             grapefruitCount++
             localStorage.setItem('grapefruit', grapefruitCount);
-            console.log(localStorage.getItem('grapefruit'))
+
             location.reload();
         }
         else {
@@ -168,7 +149,6 @@ async function getProducts() {
         if (vattenmelonCount < arrSaldo[4].saldo) {
             vattenmelonCount++
             localStorage.setItem('vattenmelon', vattenmelonCount);
-            console.log(localStorage.getItem('vattenmelon'))
             location.reload();
         }
         else {
