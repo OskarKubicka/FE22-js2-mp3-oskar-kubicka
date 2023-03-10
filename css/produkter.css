@@ -40,7 +40,7 @@ body{
     border-radius: 10px;
     margin: 20px;
     padding-bottom: 15px;
-    border: red solid 2px;
+    border: rgb(207, 64, 183) solid 2px;
 }
 
 .div-prod > *{
